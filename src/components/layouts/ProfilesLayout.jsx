@@ -1,10 +1,11 @@
-import { Outlet, useNavigate } from "react-router"
+import { Outlet } from "react-router"
 import ThemeButton from "../atoms/ThemeButton";
 import BackButton from "../atoms/BackButton";
+import HomeButton from "../atoms/HomeButton";
 
 const ProfilesLayout = () => {
 
-  const navigate = useNavigate();
+
 
   return (
     <>
@@ -25,10 +26,7 @@ const ProfilesLayout = () => {
           px-10 h-fit items-center
         ">
 
-          <button onClick={() => navigate('/inicio')}
-            className="text-3xl text-slate-100 dark:text-slate-300 hover:cursor-pointer">
-            <i className="bi bi-house-heart"></i>
-          </button>
+          <HomeButton />
 
           <BackButton />
         </div>

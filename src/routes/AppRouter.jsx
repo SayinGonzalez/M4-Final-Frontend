@@ -10,6 +10,7 @@ import PetDetail from '../components/pages/pets/PetDetail'
 import Adoptions from '../components/pages/pets/Adoptions'
 import PetsProfiles from '../components/pages/pets/PetsProfiles'
 import ProfilesLayout from '../components/layouts/ProfilesLayout'
+import NotFound from '../components/pages/NotFound'
 
 const AppRouter = () => {
   return (
@@ -28,7 +29,8 @@ const AppRouter = () => {
         <Route path='/mascotas/:id/perfil' element={<PetDetail />} />
       </Route>
       
-      {/* <Route path='*' element={<NotFound />} /> */}
+      
+      <Route path='*' element={<NotFound />} />
 
     </Routes>
   )
