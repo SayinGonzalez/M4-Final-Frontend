@@ -22,11 +22,11 @@ const PetsProfiles = () => {
       </div>
 
       {/* CARDS DE PERFILES */}
-      <div className="flex flex-wrap gap-6 justify-center size-full">
+      <div className="flex flex-wrap gap-8 justify-center px-8">
         {pets?.map((pet) => (
           <div
             key={pet.id}
-            className="w-56 h-72 my-auto"
+            className="w-40 h-48"
           >
             <MagicCard
               radiusMain={200}
@@ -44,21 +44,23 @@ const PetsProfiles = () => {
 
         {/* BTN CREAR MASCOTA */}
         <div
-          onClick={() => navigate(`/mascotas/crear`, { state: { origen: 'profiles' } })}
-          className="size-36 my-auto rounded-full">
-          <MagicCard
-            className={'rounded-full'}
-            radiusMain={100}
-            radiusHalo={50}
-            mainOpacity={0}
-            haloOpacity={0}
-          >
-            <div className="size-full rounded-full bg-[#C2A0B6] dark:bg-[#4B636D]">
-              <div className="bg-black/50 absolute inset-0 rounded-full text-center content-center">
-                <i className="bi bi-plus text-7xl text-slate-300" />
+          onClick={() => navigate('/mascotas/crear', { state: { origen: 'profiles' } })}
+          className="rounded-full">
+          <div className="size-36">
+            <MagicCard
+              className={'rounded-full'}
+              radiusMain={100}
+              radiusHalo={50}
+              mainOpacity={0}
+              haloOpacity={0}
+            >
+              <div className="size-full rounded-full bg-[#C2A0B6] dark:bg-[#4B636D]">
+                <div className="bg-black/50 absolute inset-0 rounded-full text-center content-center">
+                  <i className="bi bi-plus text-7xl text-slate-300" />
+                </div>
               </div>
-            </div>
-          </MagicCard>
+            </MagicCard>
+          </div>
           <p className="
             w-full my-2 text-center text-slate-200 hover:text-transparent
             bg-gradient-to-r from-[#9E7AFF] to-[#FE8BBB] bg-clip-text 

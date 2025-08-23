@@ -2,7 +2,7 @@
 <!-- Agregar -->
 
 ## 📁 Estructura del Proyecto
-````
+```
 /src
  ├── /components
  │   └── /pages

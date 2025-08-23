@@ -29,7 +29,6 @@ const AppRouter = () => {
         <Route path='/mascotas/:id/perfil' element={<PetDetail />} />
       </Route>
       
-      
       <Route path='*' element={<NotFound />} />
 
     </Routes>

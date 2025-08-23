@@ -1,5 +1,7 @@
 import { useNavigate } from "react-router";
 import AddRemoveBtn from "./AddRemoveBtn";
+import EditButton from "../atoms/EditButton";
+import DeleteButton from "../atoms/DeleteButton";
 
 // const PetCard = ({ origen, pet, onNext, onRemove, addToFavs }) => {
 const PetCard = ({ origen, pet, onNext, onRemove, onDelete }) => {
@@ -33,28 +35,23 @@ const PetCard = ({ origen, pet, onNext, onRemove, onDelete }) => {
         {/* Pet Detail */}
         <div className={`text-center ${(origen === 'matchcotas') ? 'my-2' : 'my-4'} relative`}>
 
-          {/* Btn Delete */}
-          <i
-            onClick={onDelete}
-            className={`
-                bi bi-trash3 
-                absolute left-4
-                text-xl cursor-pointer
-                ${(origen !== 'profiles') && 'hidden'}
-              `}
-          />
+          {(origen === 'profiles') &&
+            <>
+              {/* Btn Delete */}
+              <DeleteButton 
+                onDelete={onDelete}
+                className='absolute left-4 text-lg'
+              />
 
-          {/*  btn edit  */}
-          <i
-            onClick={() => navigate(`/mascotas/${pet.id}/editar`, { state: { origen } })}
-            className={`
-                bi bi-pencil-square
-                absolute right-4
-                text-xl cursor-pointer
-                ${(origen !== 'profiles') && 'hidden'}`}
-          />
+              {/*  btn edit  */}
+              <EditButton
+                route={() => navigate(`/mascotas/${pet.id}/editar`, { state: { origen } })}
+                className='absolute right-4 bottom-32 text-lg'
+              />
+            </>
+          }
 
-          <h2 className="text-lg lg:text-xl font-bold">{pet.petName}</h2>
+          <h2 className="text-lg lg:text-base font-bold">{pet.petName}</h2>
           <p className={`text-lg font-bold ${(origen === 'profiles') && 'hidden'}`}>{pet.sexo === 'female' ? 'Hembra' : 'Macho'} - {pet.age}</p>
 
         </div>
