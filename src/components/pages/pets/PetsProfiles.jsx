@@ -29,8 +29,8 @@ const PetsProfiles = () => {
             className="w-40 h-48"
           >
             <MagicCard
-              radiusMain={200}
-              radiusHalo={100}
+              radiusMain={150}
+              radiusHalo={50}
             >
               <PetCard
                 origen='profiles'

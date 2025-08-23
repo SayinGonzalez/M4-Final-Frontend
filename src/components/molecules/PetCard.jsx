@@ -17,13 +17,14 @@ const PetCard = ({ origen, pet, onNext, onRemove, onDelete }) => {
 
       {/* Imagen de fondo */}
       <div
-        onClick={() => navigate(`/mascotas/${pet.id}/perfil`, { state: { origen } })}
         className="absolute inset-0 bg-cover bg-center"
         style={{ backgroundImage: `url(${pet.image})` }}
       />
 
       {/* Degradado CARD*/}
-      <div className={`
+      <div
+        onClick={() => navigate(`/mascotas/${pet.id}/perfil`, { state: { origen } })}
+        className={`
           size-full absolute inset-0
           bg-gradient-to-t from-black to-40% to-transparent
         `} />
@@ -33,26 +34,42 @@ const PetCard = ({ origen, pet, onNext, onRemove, onDelete }) => {
       <div className="absolute bottom-0 left-0 text-white w-full z-10">
 
         {/* Pet Detail */}
-        <div className={`text-center ${(origen === 'matchcotas') ? 'my-2' : 'my-4'} relative`}>
+        <div className={`
+          text-center 
+          ${(origen === 'profiles')
+            ? 'my-3 grid grid-cols-4 items-end'
+            : 'my-4'}
+        `}>
 
-          {(origen === 'profiles') &&
-            <>
-              {/* Btn Delete */}
-              <DeleteButton 
-                onDelete={onDelete}
-                className='absolute left-4 text-lg'
-              />
+          {/* Btn Delete */}
+          <DeleteButton
+            onDelete={onDelete}
+            className={`
+              text-lg col-span-1
+              ${(origen !== 'profiles') && 'hidden'}
+            `}
+          />
 
-              {/*  btn edit  */}
-              <EditButton
-                route={() => navigate(`/mascotas/${pet.id}/editar`, { state: { origen } })}
-                className='absolute right-4 bottom-32 text-lg'
-              />
-            </>
-          }
+          <h2 className={`
+            ${(origen === 'profiles')
+              ? 'text-[15px] col-span-2'
+              : 'text-lg lg:text-xl'}
+            font-bold`}
+          >{pet.petName}</h2>
+          
+          <p className={`
+            text-lg font-bold 
+            ${(origen === 'profiles') && 'hidden'}`}
+          >{pet.sexo === 'female' ? 'Hembra' : 'Macho'} - {pet.age}</p>
 
-          <h2 className="text-lg lg:text-base font-bold">{pet.petName}</h2>
-          <p className={`text-lg font-bold ${(origen === 'profiles') && 'hidden'}`}>{pet.sexo === 'female' ? 'Hembra' : 'Macho'} - {pet.age}</p>
+          {/*  btn edit  */}
+          <EditButton
+            route={() => navigate(`/mascotas/${pet.id}/editar`, { state: { origen } })}
+            className={`
+              text-lg col-span-1
+              ${(origen !== 'profiles') && 'hidden'}
+            `}
+          />
 
         </div>
 
