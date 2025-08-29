@@ -6,9 +6,10 @@ const PetDetail = () => {
 
   const { id } = useParams();
 
-  const { currentPet: pet, getPetById, loading, error } = usePetContext(); // 👈 funciones desde el contexto
+  //  Pet Context
+  const { currentPet: pet, getPetById, loading, error } = usePetContext();
 
-  console.log('selectPet PetEdit -> ', pet)
+  console.log('currentPet PetEdit ➜ ', pet);
 
   const [zoomed, setZoomed] = useState(false); // 👈 estado para controlar el zoom
 
@@ -17,7 +18,7 @@ const PetDetail = () => {
 
   // 🔹 cargar mascota por id
   useEffect(() => {
-    getPetById(id)
+    getPetById(id, 'detail')
   }, [id, getPetById]);
 
   // ✅ Cierra con ESC sin depender del foco

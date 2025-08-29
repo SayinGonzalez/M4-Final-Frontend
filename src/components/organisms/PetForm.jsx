@@ -4,7 +4,7 @@ import petSchema from '../../validations/petSchema';
 
 const PetForm = ({ onSubmit, defaultValues = '', formType = 'send' }) => {
 
-  console.log('defaultValues', defaultValues)
+  // console.log('defaultValues PetForm ➜', defaultValues)
   const {
     register,
     handleSubmit,
@@ -66,7 +66,7 @@ const PetForm = ({ onSubmit, defaultValues = '', formType = 'send' }) => {
           <option value="" />
           <option value="cachorro">Cachorro</option>
           <option value="adulto">Adulto</option>
-          <option value="senior">Adulto Mayor</option>
+          <option value="senior">Senior</option>
         </select>
         <label htmlFor="age"
           className="

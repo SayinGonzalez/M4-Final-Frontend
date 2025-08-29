@@ -14,13 +14,10 @@ export const usePets = () => {
     return (JSON.parse(localStorage.getItem('petsMatchcotas')) || [])
   });
   const [petsAdoptions, setPetsAdoptions] = useState();
-  const [currentPet, setCurrentPet] = useState(null);
+  const [currentPet, setCurrentPet] = useState();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
-  // const [petsMatchcotas, setPetsMatchcotas] = useState()
-
 
   /* ────────────────────────────────────────────────────────────────────────────── */
 
@@ -30,9 +27,11 @@ export const usePets = () => {
   const getPets = useCallback(async () => {
     setLoading(true);
     setError(null);
+
     try {
-      const data = await fetchPetsService();
-      setPets(data);
+      const { pets } = await fetchPetsService();
+      setPets(pets);
+
     } catch (err) {
       setError(err);
     } finally {
@@ -45,19 +44,21 @@ export const usePets = () => {
     setLoading(true);
     setError(null);
     console.log('INGRESO loadPetsByCategory')
+
     try {
-      const data = await fetchPetsByCategoryService(category);
+      const { pets } = await fetchPetsByCategoryService(category);
 
-      console.log('category: adoption -> ', category === 'adoption')
-      category === 'adoption' && setPetsAdoptions(data)
+      // console.log('category: adoption -> ', category === 'adoption')
+      category === 'adoption' && setPetsAdoptions(pets)
 
-      console.log('category: matchcotas -> ', category === 'match')
+      // console.log('category: matchcotas -> ', category === 'match')
       if (category === 'match') {
-        setPetsMatchcotas(data);
-        localStorage.setItem("petsMatchcotas", JSON.stringify(data));
+        setPetsMatchcotas(pets);
+        localStorage.setItem("petsMatchcotas", JSON.stringify(pets));
       }
 
       setCurrentIndex(0); // reiniciar índice
+
     } catch (err) {
       setError(err);
     } finally {
@@ -67,13 +68,15 @@ export const usePets = () => {
   }, []);
 
   // 🔹 Obtiene una mascota por ID
-  const getPetById = useCallback(async (id) => {
+  const getPetById = useCallback(async (id, origen) => {
     setLoading(true);
     setError(null);
+
     try {
       setCurrentPet()
-      const pet = await fetchPetByIdService(id);
-      setCurrentPet(pet);
+      const { pet, petModified } = await fetchPetByIdService(id);
+      setCurrentPet( origen === 'detail' ? petModified : pet);
+
     } catch (err) {
       setError(err);
     } finally {
@@ -84,8 +87,8 @@ export const usePets = () => {
   // 🔹 Crea una nueva mascota
   const addPet = useCallback(async (data) => {
     try {
-      const newPet = await createPetService(data);
-      setPets(prev => [...prev, newPet]);
+      const { newPet } = await createPetService(data);
+      setPets(prevPets => [...prevPets, newPet]);
     } catch (err) {
       setError(err);
     }
@@ -94,8 +97,8 @@ export const usePets = () => {
   // 🔹 Actualiza una mascota existente
   const editPet = useCallback(async (id, data) => {
     try {
-      const updatedPet = await updatePetService(id, data);
-      setPets(prev => prev.map(p => (p.id === id ? updatedPet : p)));
+      const { updatedPet } = await updatePetService(id, data);
+      setPets(prevPets => prevPets.map(pet => (pet._id === id ? updatedPet : pet)));
     } catch (err) {
       setError(err);
     }
@@ -105,12 +108,17 @@ export const usePets = () => {
   const removePet = useCallback(async (id) => {
     try {
       await deletePetService(id);
-      setPets(prev => prev.filter(p => p.id !== id));
-      setCurrentIndex(prev => Math.min(prev, pets.length - 2)); // ajustar índice si es necesario
+      // ✅ Actualizo el estado local eliminando la mascota
+      setPets(prevPets => {
+        const updatedPets = prevPets.filter(pet => pet._id !== id);
+        // Ajusto el índice si es necesario
+        setCurrentIndex(prevIndex => Math.min(prevIndex, updatedPets.length - 1));
+        return updatedPets;
+      });
     } catch (err) {
       setError(err);
     }
-  }, [pets]);
+  }, []);
 
 
   /* ────────────────────────────────────────────────────────────────────────────── */
@@ -119,7 +127,7 @@ export const usePets = () => {
 
   const nextPet = () => {
     if (!petsMatchcotas || petsMatchcotas.length === 0) return;
-    setCurrentIndex(prev => (prev + 1) % petsMatchcotas.length); // loop circular
+    setCurrentIndex(prevIndex => (prevIndex + 1) % petsMatchcotas.length); // loop circular
   };
 
   const removeCurrentPet = () => {

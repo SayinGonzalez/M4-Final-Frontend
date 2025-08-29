@@ -10,17 +10,18 @@ const PetEdit = () => {
   const origen = useOrigen(); // 'adoptions' | 'matchcotas' | 'profiles' | 'public'
   const navigate = useNavigate();
 
-  const { currentPet, getPetById, editPet, loading, error } = usePetContext(); // 👈 funciones desde el contexto
+  const { currentPet, getPetById, editPet, loading, error } = usePetContext();  // funciones desde el contexto
 
-  console.log('selectPet PetEdit -> ', currentPet)
+  // console.log('id PetEdit ➜ ', id)
+  console.log('currentPet PetEdit ➜ ', currentPet)
 
   // 🔹 submit para actualizar
   const handleSubmit = async (data) => {
-    console.log("Ingreso handleSubmit");
-    console.log("Datos enviados:", data);
+    console.log("INGRESO HANDLE SUBMIT");
+    console.log("Datos enviados ➜", data);
     try {
       await editPet(id, data);
-      navigate("/mascotas/perfiles"); // ✅ redirige después de editar
+      navigate("/mascotas/perfiles");  // redirige después de editar
     } catch (error) {
       console.error("Error al actualizar la mascota:", error);
       alert("Error al actualizar ❌");
@@ -45,7 +46,7 @@ const PetEdit = () => {
               </div>
         <PetForm
           onSubmit={handleSubmit}
-          defaultValues={currentPet} // 👈 valores iniciales
+          defaultValues={currentPet} // valores iniciales
           formType={'edit'}
         />
       </section>

@@ -4,7 +4,7 @@ import * as yup from "yup";
 const petSchema = yup.object({
   petName: yup.string().required("El nombre es obligatorio").trim(),
   sexo: yup.string()
-    .oneOf(["female", "male"], "Debe ser female u male")
+    .oneOf(["female", "male"], "Debe ser Hembra o Macho")
     .when("category", {
       is: (category) => category === "match",
       then: (schema) => schema.required("El sexo de la mascota es obligatorio"),

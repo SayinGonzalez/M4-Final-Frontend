@@ -14,7 +14,7 @@ const FavsSidebar = () => {
   // Elimina todos los personajes de Favoritos
   const handleRemoveAll = () => {
     RemoveAllFavs();
-    document.activeElement.blur(); // 👈 Quita el foco después del click
+    document.activeElement.blur();  // Quita el foco después del click
   }
 
   return (
@@ -75,7 +75,7 @@ const FavsSidebar = () => {
                 <ul className="m-6">
                   {favs.map((char) => (
                     <FavsCardSidebar
-                      key={char.id}
+                      key={char._id}
                       char={char}
                     />
                   ))}

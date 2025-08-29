@@ -20,7 +20,7 @@ const Matchcotas = () => {
       ? petsMatchcotas[currentIndex]
       : null;
 
-  console.log('currentPet', currentPet)
+  console.log('currentPet Matchcotas ➜', currentPet)
 
   loading && (<p className="text-center">Cargando mascotas...</p>)
   error && (<p className="text-center text-red-500">Error: {error.message}</p>)
@@ -30,7 +30,7 @@ const Matchcotas = () => {
       loadPetsByCategory("match");
     }
   }, [petsMatchcotas, loadPetsByCategory]);
-  console.log('pets Matchcotas -> ', petsMatchcotas)
+  console.log('pets Matchcotas ➜ ', petsMatchcotas)
 
   return (
     <section className="flex-1 flex justify-center items-center p-16">
@@ -42,7 +42,6 @@ const Matchcotas = () => {
               pet={currentPet}
               onNext={nextPet}
               onRemove={removeCurrentPet}
-            // addToFavs={addToFavs}
             />
           </MagicCard>
         </div>

@@ -15,6 +15,7 @@ import NotFound from '../components/pages/NotFound'
 const AppRouter = () => {
   return (
     <Routes>
+      
       <Route element={<MainLayout />}>
         <Route path='/' element={<Navigate to={'/inicio'} />} />   // Redirige a Home
         <Route path='/inicio' element={<Home />} />
