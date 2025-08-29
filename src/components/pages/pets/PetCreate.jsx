@@ -6,24 +6,21 @@ import { usePetContext } from '../../../hooks/useContexts';
 import { useNavigate } from 'react-router';
 
 const PetCreate = () => {
-  const { addPet } = usePetContext(); // 👈 traemos la función del contexto
-  const navigate = useNavigate();     // 👈 para redirigir
+  const { addPet } = usePetContext();  // traemos la función del contexto
+  const navigate = useNavigate();      // para redirigir
 
   const handleSubmit = async (data) => {
-    console.log("Ingreso handleSubmit");
-    console.log("Datos enviados:", data);
+    console.log("INGRESO HANDLE SUBMIT");
+    console.log("Datos enviados ➜", data);
 
     try {
-      await addPet(data); // 👈 llama al service y actualiza el estado global
-
-      // ✅ redirigir automáticamente a perfiles
-      navigate("/mascotas/perfiles");
-
+      await addPet(data);
+      navigate("/mascotas/perfiles");  // redirigir automáticamente a perfiles
     } catch (error) {
       console.error("Error al crear la mascota:", error);
       alert("Hubo un error al crear la mascota ❌");
     } finally {
-      document.activeElement.blur(); // 👈 Quita el foco después del click
+      document.activeElement.blur();  // Quita el foco después del click
     }
   };
 

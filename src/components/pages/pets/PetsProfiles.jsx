@@ -6,7 +6,15 @@ import PetCard from "../../molecules/PetCard";
 const PetsProfiles = () => {
 
   const navigate = useNavigate();
-  const { pets, removeCurrentPet, removePet } = usePetContext();
+  const { pets, removePet } = usePetContext();
+
+  const handleDelete = async (id) => {
+    try {
+      await removePet(id)
+    } catch (error) {
+      console.error("Error al actualizar la mascota:", error);
+    }
+  }
 
   console.log(pets)
 
@@ -25,7 +33,7 @@ const PetsProfiles = () => {
       <div className="flex flex-wrap gap-8 justify-center px-8">
         {pets?.map((pet) => (
           <div
-            key={pet.id}
+            key={pet._id}
             className="w-40 h-48"
           >
             <MagicCard
@@ -35,8 +43,7 @@ const PetsProfiles = () => {
               <PetCard
                 origen='profiles'
                 pet={pet}
-                onRemove={removeCurrentPet}
-                onDelete={async () => { await removePet(pet.id) }}
+                onDelete={async () => { handleDelete(pet._id) }}
               />
             </MagicCard>
           </div>

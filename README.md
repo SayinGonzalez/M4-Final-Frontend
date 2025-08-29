@@ -41,6 +41,4 @@ Elegimos Axios en lugar de Fetch porque:
 - 🔹 Tiene soporte con Node.js a diferencia de Fetch.
 - 🔹 Soporta cancelación de peticiones, timeouts y configuración global.
 
-###  By: Sayin Gonzalez
-
-➜
+###  By: Francisco Fabián - Sayin Gonzalez

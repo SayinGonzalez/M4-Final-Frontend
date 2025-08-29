@@ -8,7 +8,7 @@ const FavsCardSidebar = ({ char }) => {
   const { removeFromFavs } = useFavsContext();
 
   return (
-    <li key={char.id} className="bg-[#263846] dark:bg-[#765265] flex items-center justify-between p-2 mb-3 rounded-lg">
+    <li className="bg-[#263846] dark:bg-[#765265] flex items-center justify-between p-2 mb-3 rounded-lg">
 
       {/*  Imágen del personaje */}
       <div className="min-w-18 max-w-16 h-fit overflow-hidden rounded-lg">

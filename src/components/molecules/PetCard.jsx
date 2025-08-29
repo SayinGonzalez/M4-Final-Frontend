@@ -3,7 +3,6 @@ import AddRemoveBtn from "./AddRemoveBtn";
 import EditButton from "../atoms/EditButton";
 import DeleteButton from "../atoms/DeleteButton";
 
-// const PetCard = ({ origen, pet, onNext, onRemove, addToFavs }) => {
 const PetCard = ({ origen, pet, onNext, onRemove, onDelete }) => {
 
   const navigate = useNavigate();
@@ -23,7 +22,7 @@ const PetCard = ({ origen, pet, onNext, onRemove, onDelete }) => {
 
       {/* Degradado CARD*/}
       <div
-        onClick={() => navigate(`/mascotas/${pet.id}/perfil`, { state: { origen } })}
+        onClick={() => navigate(`/mascotas/${pet._id}/perfil`, { state: { origen } })}
         className={`
           size-full absolute inset-0
           bg-gradient-to-t from-black to-40% to-transparent
@@ -64,7 +63,7 @@ const PetCard = ({ origen, pet, onNext, onRemove, onDelete }) => {
 
           {/*  btn edit  */}
           <EditButton
-            route={() => navigate(`/mascotas/${pet.id}/editar`, { state: { origen } })}
+            route={() => navigate(`/mascotas/${pet._id}/editar`, { state: { origen } })}
             className={`
               text-lg col-span-1
               ${(origen !== 'profiles') && 'hidden'}
@@ -90,7 +89,7 @@ const PetCard = ({ origen, pet, onNext, onRemove, onDelete }) => {
           {/* Btn Heart */}
           {(origen === 'adoptions' || origen === 'matchcotas') &&
             <AddRemoveBtn
-              charId={pet.id}
+              charId={pet._id}
               char={pet}
               className={`
                   ${origen === 'adoptions' && "absolute right-4 bottom-64"}
