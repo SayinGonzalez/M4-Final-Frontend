@@ -1,7 +1,7 @@
 import { useFavsContext } from "../../hooks/useContexts";
 import ThemeButton from "../atoms/ThemeButton"
 import Navbar from "../molecules/Navbar"
-import BurgerMenu from "../organisms/burguerMenu";
+import BurgerMenu from "../organisms/BurguerMenu";
 import pets from '/assets/Pets.png';
 import { useNavigate } from "react-router";
 
