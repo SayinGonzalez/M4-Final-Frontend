@@ -4,14 +4,17 @@
 import { FavsProvider } from "./FavsContext";
 import { PetProvider } from "./PetContext";
 import { ThemeProvider } from "./ThemeContext";
+import { UserProvider } from "./UserContext";
 
 export function AppProvider({ children }) {
   return (
     <ThemeProvider>
       <FavsProvider>
-        <PetProvider>
-          {children}
-        </PetProvider>
+        <UserProvider>
+          <PetProvider>
+            {children}
+          </PetProvider>
+        </UserProvider>
       </FavsProvider>
     </ThemeProvider>
   );

@@ -137,23 +137,3 @@ export const deletePetService = async (id) => {
     throw err; // errores del backend ya lanzados como BackendError
   }
 };
-
-
-
-
-
-// Ejemplo: queremos solo usuarios con email válido y que el nombre esté en mayúsculas
-
-// function isValidEmail(email) {
-//   // Validación simple
-//   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-// }
-
-// // Validamos y transformamos
-// const filteredUsers = users
-//   .filter(user => isValidEmail(user.email))
-//   .map(user => ({
-//     id: user.id,
-//     name: user.name.toUpperCase(),
-//     email: user.email,
-//   }));

@@ -24,6 +24,8 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.34.0",
+    "@iconify/json": "^2.2.379",
+    "@iconify/tailwind4": "^1.0.6",
     "@types/react": "^19.1.11",
     "@types/react-dom": "^19.1.7",
     "@vitejs/plugin-react-swc": "^4.0.1",

@@ -1,11 +1,12 @@
 
 const DeleteButton = ({onDelete, className}) => {
+
   return (
     <i
       onClick={onDelete}
       className={`
-        bi bi-trash3 
-        cursor-pointer
+        iconify solar--trash-bin-trash-broken 
+        cursor-pointer 
         ${className}  
       `}
     />

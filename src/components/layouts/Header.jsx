@@ -1,6 +1,7 @@
 import { useFavsContext } from "../../hooks/useContexts";
 import ThemeButton from "../atoms/ThemeButton"
 import Navbar from "../molecules/Navbar"
+import BurgerMenu from "../organisms/burguerMenu";
 import pets from '/assets/Pets.png';
 import { useNavigate } from "react-router";
 
@@ -18,8 +19,9 @@ const Header = () => {
       h-[72px] text-white p-4 flex
       sticky top-0 z-10 justify-around
     ">
-
-      <button
+      {/* icono de perfiles */}
+      <BurgerMenu/>
+      {/* <button
         onClick={ () => navigate('/mascotas/perfiles')}
         className="
           flex z-10 size-12
@@ -29,7 +31,7 @@ const Header = () => {
           dark:bg-[#765265] dark:hover:bg-[#9a6a84] dark:hover:shadow-[#3d2a35]
           text-slate-300 dark:text-white">
         <img src={pets} alt="Icono" className="w-6 h-6" />
-      </button>
+      </button> */}
 
       {/* bg header */}
       <div className="
@@ -64,7 +66,7 @@ const Header = () => {
       >
         Pet <i className="bi bi-suit-heart-fill md:text-lg font-medium flex gap-2 items-center justify-center" /> Loves
       </button>
-
+      
     </header>
   )
 }
