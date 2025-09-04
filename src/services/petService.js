@@ -6,7 +6,7 @@ import {
   updatePet,
   deletePet
 } from '../api/petApi';
-import CustomError from '../helpers/customError.js';
+import CustomError from '../helpers/customError';
 import { capitalize } from '../helpers/formatters';
 
 // 🔹 Obtiene todas las mascotas
