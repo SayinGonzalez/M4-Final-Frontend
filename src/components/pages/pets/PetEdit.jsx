@@ -4,6 +4,7 @@ import useOrigen from "../../../hooks/useOrigen";
 import { usePetContext } from "../../../hooks/useContexts";
 import PetForm from "../../organisms/PetForm";
 import BackButton from "../../atoms/BackButton";
+import { toast } from "react-toastify";
 
 const PetEdit = () => {
   const { id } = useParams();
@@ -25,6 +26,7 @@ const PetEdit = () => {
     } catch (error) {
       console.error("Error al actualizar la mascota:", error);
       alert("Error al actualizar ❌");
+      toast.error("Error al actualizar!");
     } finally {
       document.activeElement.blur();
     }
@@ -34,16 +36,16 @@ const PetEdit = () => {
   error && (<p className="text-center text-red-500">Error: {error.message}</p>)
 
   // 🔹 cargar mascota por id
-  useEffect(() => { 
+  useEffect(() => {
     getPetById(id)
   }, [id, getPetById]);
 
   return (
     origen === "profiles" && currentPet && (
       <section className="flex-1 w-full content-center text-gray-200">
-         <div className="absolute inset-0 top-25 left-11/12">
-                <BackButton />
-              </div>
+        <div className="absolute inset-0 top-25 left-11/12">
+          <BackButton />
+        </div>
         <PetForm
           onSubmit={handleSubmit}
           defaultValues={currentPet} // valores iniciales

@@ -33,7 +33,7 @@ export default function useFavs() {
 
   // Remover un personaje de favs
   const removeFromFavs = (charId) => {
-    setFavs((prevFavs) => prevFavs.filter((char) => char.id !== charId));
+    setFavs((prevFavs) => prevFavs.filter((char) => char._id !== charId));
     return true;
   };
 
@@ -44,7 +44,7 @@ export default function useFavs() {
 
   // Verifica si el personaje se encuentra en la lista
   const isInFavs = (charId) =>
-    favs.some((char) => char.id === charId);
+    favs.some((char) => char._id === charId);
 
   /* ────────────────────────────────────────────────────────────────────────────── */
 

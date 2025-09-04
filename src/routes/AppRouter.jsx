@@ -11,11 +11,14 @@ import Adoptions from '../components/pages/pets/Adoptions'
 import PetsProfiles from '../components/pages/pets/PetsProfiles'
 import ProfilesLayout from '../components/layouts/ProfilesLayout'
 import NotFound from '../components/pages/NotFound'
+import UserDetail from '../components/pages/user/UserDetail'
+import UserForm from '../components/organisms/UserForm'
+import AuthForm from '../components/organisms/AuthForm'
 
 const AppRouter = () => {
   return (
     <Routes>
-      
+
       <Route element={<MainLayout />}>
         <Route path='/' element={<Navigate to={'/inicio'} />} />   // Redirige a Home
         <Route path='/inicio' element={<Home />} />
@@ -23,13 +26,18 @@ const AppRouter = () => {
         <Route path='/matchcotas' element={<Matchcotas />} />
         <Route path='/mascotas/crear' element={<PetCreate />} />
         <Route path='/mascotas/:id/editar' element={<PetEdit />} />
+        <Route path='/usuario/register' element={<AuthForm formType='register'/>} />
+        <Route path='/usuario/login' element={<AuthForm formType='login'/>} />
+        <Route path='/usuario/personales' element={<UserForm formType='personales'/>} /> {/* Pasar ID */}
+        <Route path='/usuario/cuenta' element={<UserForm formType='cuenta'/>} /> {/* Pasar ID */}
       </Route>
 
       <Route element={<ProfilesLayout />}>
         <Route path='/mascotas/perfiles' element={<PetsProfiles />} />
         <Route path='/mascotas/:id/perfil' element={<PetDetail />} />
+        <Route path='/usuario/:id/perfil' element={<UserDetail />} />
       </Route>
-      
+
       <Route path='*' element={<NotFound />} />
 
     </Routes>

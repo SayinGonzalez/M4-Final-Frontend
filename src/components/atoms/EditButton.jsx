@@ -5,7 +5,7 @@ const EditButton = ({ route, className }) => {
     <i
       onClick={route}
       className={`
-        bi bi-pencil-square
+        iconify solar--pen-new-square-broken
         cursor-pointer
         ${className}
       `}

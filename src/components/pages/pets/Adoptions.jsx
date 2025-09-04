@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { usePetContext } from "../../../hooks/useContexts";
 import MagicCard from "../../atoms/MagicCard";
 import PetCard from "../../molecules/PetCard";
+import SearchSidebar from "../../organisms/SearchSideBar";
 
 const Adoptions = () => {
 
@@ -14,6 +15,7 @@ const Adoptions = () => {
 	
 	return (
 		<section className="flex-1 p-16 z-0">
+			<SearchSidebar/>
 			<div className="relative z-0 flex flex-wrap gap-6">
 				{petsAdoptions && petsAdoptions.map((pet) => (
 					<div

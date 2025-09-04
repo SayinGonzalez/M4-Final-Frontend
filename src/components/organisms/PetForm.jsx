@@ -359,9 +359,9 @@ const PetForm = ({ onSubmit, defaultValues = '', formType = 'send' }) => {
       {<button
         type="submit"
         className="
-          col-span-6 px-2 py-1 
+          col-span-6 px-3 py-2 
          dark:bg-[#663851] dark:hover:brightness-110
-         bg-slate-900 text-white p-2 rounded hover:brightness-120 border-slate-950 focus:border-b-0 
+         bg-slate-900 text-white rounded hover:brightness-120 border-slate-950 focus:border-b-0 
          focus:border-t-4 focus:border-transparent
          focus:brightness-95 border-b-4 dark:border-[#402132] focus:translate-y-1
       ">

@@ -23,24 +23,23 @@ const AddRemoveBtn = ({ charId, char, className }) => {
         <button
           onClick={removeChar}
           className={`
-            ${className} bg-black/60
-            text-rose-700 hover:text-rose-500
+            ${className}
             font-medium mx-auto h-fit p-2 rounded-full
           `}
         >
-          <i className="bi bi-suit-heart-fill md:text-[22px] flex gap-2 items-center justify-center" />
+          <i className="iconify-color streamline-stickies-color--love md:text-[30px] flex gap-2 items-center justify-center cursor-pointer hover:scale-105 
+          shadow-2xl shadow-slate-900" />
         </button>
       ) : (
         /*  Btn para añadir  */
         <button
           onClick={addChar}
           className={`
-            ${className} bg-black/60
-            text-white hover:text-rose-700
+            ${className}
             font-medium mx-auto h-fit p-2 rounded-full
           `}
         >
-          <i className="bi bi-suit-heart md:text-[22px] flex gap-2 items-center justify-center" />
+          <i className="iconify-color streamline-stickies-color--love-duo  md:text-[26px] flex gap-2 items-center justify-center cursor-pointer hover:scale-125 shadow-2xl shadow-slate-900" />
         </button>
       )}
     </>

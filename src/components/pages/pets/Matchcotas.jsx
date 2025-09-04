@@ -3,6 +3,7 @@ import MagicCard from "../../atoms/MagicCard";
 import EmptyMsg from "../../atoms/EmptyMsg";
 import { usePetContext } from "../../../hooks/useContexts";
 import PetCard from "../../molecules/PetCard";
+import SearchSidebar from "../../organisms/SearchSideBar";
 
 const Matchcotas = () => {
   const {
@@ -35,7 +36,8 @@ const Matchcotas = () => {
   return (
     <section className="flex-1 flex justify-center items-center p-16">
       {currentPet ?
-        <div className="h-[450px] w-[350px] relative">
+        <div className="h-[450px] w-[350px] relative z-0">
+          <SearchSidebar />
           <MagicCard>
             <PetCard
               origen="matchcotas"

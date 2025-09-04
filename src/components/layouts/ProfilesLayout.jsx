@@ -13,7 +13,7 @@ const ProfilesLayout = () => {
 
         {/* BUTTON */}
         <ThemeButton className="
-          absolute inset-0 -left-5 top-36 z-10
+          absolute inset-0 -left-5 top-8 z-20
           size-fit rounded-r-3xl py-3 px-3
           transition duration-500
           hover:translate-x-4 
@@ -21,9 +21,9 @@ const ProfilesLayout = () => {
 
         {/* NAV */}
         <div className="
-          relative z-10
-          flex justify-between
-          px-10 h-fit items-center
+          relative z-10 gap-50
+          flex justify-around
+          h-fit items-center
         ">
 
           <HomeButton />

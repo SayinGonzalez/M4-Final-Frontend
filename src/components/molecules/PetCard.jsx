@@ -7,11 +7,9 @@ const PetCard = ({ origen, pet, onNext, onRemove, onDelete }) => {
 
   const navigate = useNavigate();
 
-  // console.log(`origen: ${origen}`) // 'adoptions' | 'matchcotas' | 'profiles' | 'public'
-
   return (
     <div className="
-      relative size-full
+      relative size-full z-10
       rounded-lg overflow-hidden">
 
       {/* Imagen de fondo */}
@@ -44,7 +42,7 @@ const PetCard = ({ origen, pet, onNext, onRemove, onDelete }) => {
           <DeleteButton
             onDelete={onDelete}
             className={`
-              text-lg col-span-1
+              text-lg col-span-1 ml-3
               ${(origen !== 'profiles') && 'hidden'}
             `}
           />
@@ -65,7 +63,7 @@ const PetCard = ({ origen, pet, onNext, onRemove, onDelete }) => {
           <EditButton
             route={() => navigate(`/mascotas/${pet._id}/editar`, { state: { origen } })}
             className={`
-              text-lg col-span-1
+              text-lg col-span-1 ml-2
               ${(origen !== 'profiles') && 'hidden'}
             `}
           />
@@ -73,13 +71,14 @@ const PetCard = ({ origen, pet, onNext, onRemove, onDelete }) => {
         </div>
 
         {/* Icons */}
-        <div className={`flex items-center justify-between ${(origen === 'matchcotas') && 'my-4 mx-6'}`}>
+        <div className={`flex items-center text-3xl justify-between ${(origen === 'matchcotas') && 'my-4 mx-6'}`}>
 
           {/* Btn Delete */}
           {onRemove && (
-            <i
+            <i 
               className={`
-                  bi bi-x-square-fill text-teal-700 text-3xl cursor-pointer
+                  iconify-color streamline-stickies-color--cancel-2-duo  cursor-pointer
+                  hover:scale-125
                   ${origen !== 'matchcotas' && "hidden"}
                 `}
               onClick={onRemove}
@@ -100,7 +99,9 @@ const PetCard = ({ origen, pet, onNext, onRemove, onDelete }) => {
           {/* Btn Next */}
           {onNext && (
             <i
-              className="bi bi-arrow-right-square-fill text-slate-300 text-3xl cursor-pointer"
+              className="iconify-color streamline-stickies-color--cursor
+              rotate-45 text-2xl cursor-pointer
+              hover:scale-125"
               onClick={onNext}
             />
           )}

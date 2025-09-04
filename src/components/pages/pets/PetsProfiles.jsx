@@ -2,19 +2,40 @@ import { useNavigate } from "react-router";
 import MagicCard from "../../atoms/MagicCard";
 import { usePetContext } from "../../../hooks/useContexts";
 import PetCard from "../../molecules/PetCard";
+import { useConfirm } from "../../../hooks/useConfirm";
+import ConfirmDelete from "../../atoms/ConfirmDelete";
+import { toast } from "react-toastify";
 
 const PetsProfiles = () => {
 
   const navigate = useNavigate();
   const { pets, removePet } = usePetContext();
+  const {
+    confirm,
+    isOpen,
+    message,
+    handleConfirm,
+    handleCancel
+  } = useConfirm();
 
   const handleDelete = async (id) => {
-    try {
-      await removePet(id)
-    } catch (error) {
-      console.error("Error al actualizar la mascota:", error);
+    // Mostramos modal y esperamos la respuesta
+    const confirmed = await confirm(`¿Estás seguro de eliminar?`);
+    if (!confirmed) {
+      console.log("Eliminación cancelada");
+      // Notificacion
+      return toast.info('Eliminación cancelada!');
     }
-  }
+
+    try {
+      await removePet(id);
+      console.log("Mascota eliminada");
+      // Notificacion
+      toast.success('Mascota eliminada con exito!')
+    } catch (error) {
+      console.error("Error al eliminar la mascota:", error);
+    }
+  };
 
   console.log(pets)
 
@@ -24,10 +45,17 @@ const PetsProfiles = () => {
         <h2 className="
           h-12 w-1/4 lg:w-1/6 mx-auto
           rounded-2xl p-2
-          text-center text-4xl text-slate-100
-          font-bold clicker-script-regular
-        ">PetsProfiles</h2>
+          text-center md:text-4xl sm:text-2xl text-xl text-slate-100
+          font-bold indie-flower-regular
+        ">Mis Mascotas</h2>
       </div>
+
+      <ConfirmDelete
+        isOpen={isOpen}
+        onConfirm={handleConfirm}
+        onCancel={handleCancel}
+        message={message}
+      />
 
       {/* CARDS DE PERFILES */}
       <div className="flex flex-wrap gap-8 justify-center px-8">
