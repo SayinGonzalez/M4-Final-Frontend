@@ -8,7 +8,7 @@ export const Footer = () => {
        shadow-inner shadow-black/60 dark:shadow-slate-500
       ">
       <i className="bi bi-c-circle"></i>
-      <p className="font-semibold">Hecho con React por Sayin Gonzalez</p>
+      <p className="font-semibold">Hecho con React por Sayin Gonzalez - Francisco Fabian</p>
     </div>
   )
 }
