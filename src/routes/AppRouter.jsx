@@ -14,6 +14,7 @@ import NotFound from '../components/pages/NotFound'
 import UserDetail from '../components/pages/user/UserDetail'
 import UserForm from '../components/organisms/UserForm'
 import AuthForm from '../components/organisms/AuthForm'
+import Login from '../components/pages/user/Login'
 
 const AppRouter = () => {
   return (
@@ -22,14 +23,16 @@ const AppRouter = () => {
       <Route element={<MainLayout />}>
         <Route path='/' element={<Navigate to={'/inicio'} />} />   // Redirige a Home
         <Route path='/inicio' element={<Home />} />
+
         <Route path='/adopciones' element={<Adoptions />} />
         <Route path='/matchcotas' element={<Matchcotas />} />
         <Route path='/mascotas/crear' element={<PetCreate />} />
         <Route path='/mascotas/:id/editar' element={<PetEdit />} />
-        <Route path='/usuario/register' element={<AuthForm formType='register'/>} />
-        <Route path='/usuario/login' element={<AuthForm formType='login'/>} />
-        <Route path='/usuario/personales' element={<UserForm formType='personales'/>} /> {/* Pasar ID */}
-        <Route path='/usuario/cuenta' element={<UserForm formType='cuenta'/>} /> {/* Pasar ID */}
+
+        <Route path='/register' element={<AuthForm formType='register' />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/usuario/personales' element={<UserForm formType='personales' />} /> {/* Pasar ID */}
+        <Route path='/usuario/cuenta' element={<UserForm formType='cuenta' />} /> {/* Pasar ID */}
       </Route>
 
       <Route element={<ProfilesLayout />}>

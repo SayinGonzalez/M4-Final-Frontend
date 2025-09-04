@@ -5,11 +5,12 @@ import PetCard from "../../molecules/PetCard";
 import { useConfirm } from "../../../hooks/useConfirm";
 import ConfirmDelete from "../../atoms/ConfirmDelete";
 import { toast } from "react-toastify";
+import { useEffect } from "react";
 
 const PetsProfiles = () => {
 
   const navigate = useNavigate();
-  const { pets, removePet } = usePetContext();
+  const { userPets, fetchUserPets, pagination, removePet } = usePetContext();
   const {
     confirm,
     isOpen,
@@ -37,7 +38,12 @@ const PetsProfiles = () => {
     }
   };
 
-  console.log(pets)
+  console.log(userPets)
+
+  useEffect(() => {
+    fetchUserPets(1, 6)
+  }, [fetchUserPets])
+
 
   return (
     <div className="flex-1 flex flex-col items-center justify-center gap-6">
@@ -59,7 +65,7 @@ const PetsProfiles = () => {
 
       {/* CARDS DE PERFILES */}
       <div className="flex flex-wrap gap-8 justify-center px-8">
-        {pets?.map((pet) => (
+        {userPets?.map((pet) => (
           <div
             key={pet._id}
             className="w-40 h-48"
@@ -102,6 +108,31 @@ const PetsProfiles = () => {
           ">Agregar Mascota</p>
         </div>
       </div>
+
+      {/* PAGINACIÓN */}
+      {pagination && (
+        <div className="flex items-center gap-6 mt-6">
+          <button
+            disabled={pagination.page <= 1}
+            onClick={() => fetchUserPets(pagination.page - 1, pagination.limit)}
+            className="px-4 py-2 bg-gray-200 rounded disabled:opacity-50"
+          >
+            ◀ Anterior
+          </button>
+
+          <span className="text-slate-200">
+            Página {pagination.page} de {pagination.totalPages}
+          </span>
+
+          <button
+            disabled={pagination.page >= pagination.totalPages}
+            onClick={() => fetchUserPets(pagination.page + 1, pagination.limit)}
+            className="px-4 py-2 bg-gray-200 rounded disabled:opacity-50"
+          >
+            Siguiente ▶
+          </button>
+        </div>
+      )}
     </div >
   )
 }

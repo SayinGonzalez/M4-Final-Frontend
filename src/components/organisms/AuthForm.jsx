@@ -48,7 +48,7 @@ const AuthForm = ({ onSubmit, formType = "register" }) => {
               peer-focus:scale-[85%] peer-focus:-translate-y-6
               peer-placeholder-shown:scale-100
               peer-placeholder-shown:translate-y-0
-            ">Usuario
+            ">Usuario o email
             </label>
             <p className="text-[#560606] dark:text-[#ff9794] text-sm">{errors.username?.message}</p>
           </div>

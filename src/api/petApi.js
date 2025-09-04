@@ -2,9 +2,25 @@
 
 import api from "./axiosInstance";
 
+//  /pets/...
+
 // 🔹 Obtiene todas las mascotas
 const getPets = async () => {
   const response = await api.get('/pets');
+  console.log('Data petApi getPets ➜ ', response.data);
+  return response.data;
+};
+
+// 🔹 Obtiene una mascota por ID
+const getPetById = async (id) => {
+  const response = await api.get(`/pets/id/${id}`);
+  console.log('Data petApi getPetById ➜ ', response);
+  return response.data;
+};
+
+// 🔹 Obtiene mascotas del usuario con paginación
+const getUserPets = async (page = 1, limit = 10) => {
+  const response = await api.get(`/pets/my-pets?page=${page}&limit=${limit}`);
   console.log('Data petApi getPets ➜ ', response.data);
   return response.data;
 };
@@ -16,12 +32,11 @@ const getPetsCategory = async (category) => {
   return response.data;
 };
 
-// 🔹 Obtiene una mascota por ID
-const getPetById = async (id) => {
-  const response = await api.get(`/pets/id/${id}`);
-  console.log('Data petApi getPetById ➜ ', response);
+const getByQuerys = async () => {
+  const response = await api.get(`/pets/search`)
+  console.log('Data petApi getByCategory ➜ ', response);
   return response.data;
-};
+}
 
 // 🔹 Crea una nueva mascota
 const createPet = async (data) => {
@@ -46,7 +61,9 @@ const deletePet = async (id) => {
 
 export {
   getPets,
+  getUserPets,
   getPetsCategory,
+  getByQuerys,
   getPetById,
   createPet,
   updatePet,

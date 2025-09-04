@@ -1,7 +1,13 @@
 //  CONSULTAS RELACIONADAS A LOS USUARIOS
 
+//  /users/...
+/* 
+    / (list)
+    /id/:id
+    /edit/:id
+    /delete/:id
+*/
+
 import api from "./axiosInstance";
 
-const loginUser = (credentials) => api.post(`/auth/login`, credentials);
 
-export default loginUser

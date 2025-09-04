@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import {
   fetchPetsService,
+  fetchUserPetsService,
   fetchPetsByCategoryService,
   fetchPetByIdService,
   createPetService,
@@ -10,6 +11,8 @@ import {
 
 export const usePets = () => {
   const [pets, setPets] = useState();
+  const [userPets, setUserPets] = useState([]);
+  const [pagination, setPagination] = useState(null);
   const [petsMatchcotas, setPetsMatchcotas] = useState(() => {
     return (JSON.parse(localStorage.getItem('petsMatchcotas')) || [])
   });
@@ -38,6 +41,21 @@ export const usePets = () => {
       setLoading(false);
     }
   }, []);
+
+  // 🔹 Obtiene las mascotas del usuario
+  const fetchUserPets = async (page = 1, limit = 10) => {
+    setLoading(true);
+    setError(null);
+    try {
+      const { pets, pagination } = await fetchUserPetsService(page, limit);
+      setUserPets(pets);
+      setPagination(pagination);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   // 🔹 Obtiene mascotas por categoría
   const loadPetsByCategory = useCallback(async (category) => {
@@ -75,7 +93,7 @@ export const usePets = () => {
     try {
       setCurrentPet()
       const { pet, petModified } = await fetchPetByIdService(id);
-      setCurrentPet( origen === 'detail' ? petModified : pet);
+      setCurrentPet(origen === 'detail' ? petModified : pet);
 
     } catch (err) {
       setError(err);
@@ -152,12 +170,15 @@ export const usePets = () => {
 
   return {
     pets,
+    userPets, 
     petsMatchcotas,
     petsAdoptions,
     currentPet,
     loading,
     error,
     currentIndex,
+    pagination,
+    fetchUserPets,
     loadPetsByCategory,
     getPetById,
     addPet,

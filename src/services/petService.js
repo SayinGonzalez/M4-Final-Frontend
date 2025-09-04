@@ -1,5 +1,6 @@
 import {
   getPets,
+  getUserPets,
   getPetsCategory,
   getPetById,
   createPet,
@@ -26,6 +27,29 @@ export const fetchPetsService = async () => {
       throw new CustomError(err.message, "NetworkError");
     }
     throw err; // errores del backend ya lanzados como BackendError
+  }
+};
+
+// 🔹 Obtiene las mascotas del usuario
+export const fetchUserPetsService = async () => {
+  try {
+    const { data, success, message, pagination } = await getUserPets();
+
+    if (!success) {
+      throw new CustomError(message, "BackendError");
+    }
+
+    return {
+      pets: data,        // las mascotas
+      pagination,        // info de paginación
+    };
+    
+  } catch (err) {
+    // error de red en front
+    if (!err.response) {
+      throw new CustomError(err.message, "NetworkError");
+    }
+    throw new CustomError(err.message, "ServiceError");
   }
 };
 
